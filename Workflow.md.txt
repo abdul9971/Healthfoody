@@ -1,0 +1,84 @@
+# Product Workflows: Smart Food & Health App
+
+This document defines the high-level operational workflows for the core features of the application.
+
+---
+
+## 1. User Onboarding & Personalization Loop
+**Goal:** Establish a baseline and sync external data.
+
+1. **Trigger:** User opens app for the first time.
+2. **Input:** User selects Health Goals (e.g., Weight Loss) and Dietary Prefs (e.g., Keto).
+3. **Integration:** System prompts for Apple Health/Google Fit API permissions.
+4. **Calculation:** Backend calculates TDEE (Total Daily Energy Expenditure) based on profile + synced activity data.
+5. **Output:** Dashboard initializes with personalized "Daily Health Score" targets.
+
+---
+
+## 2. AI Food Logging (Photo-to-Macros)
+**Goal:** Minimize manual data entry friction.
+
+1. **Trigger:** User taps the "Camera" icon on the dashboard.
+2. **Action:** User takes a photo of their plate.
+3. **Processing:** * Image is sent to Computer Vision API.
+* API returns identified food items (e.g., Grilled Chicken, Brown Rice, Avocado).
+* System estimates volume/weight based on standard portion sizes.
+4. **Validation:** User confirms or adjusts the detected items and portions.
+5. **Update:** Calories and macros are subtracted from the daily remaining total.
+
+---
+
+## 3. Real-Time "Smart Swap" Suggestion
+**Goal:** Influence behavior at the point of decision.
+
+1. **Trigger:** User searches for a food item with a low health grade (e.g., "Potato Chips").
+2. **Logic:** * System identifies the food category (Snack/Salty).
+* System queries database for a "Green Grade" alternative (e.g., "Air-popped Popcorn").
+3. **Display:** A "Smart Swap" banner appears over the search results.
+4. **Outcome:** * If user selects the swap: App logs the healthier choice and awards "Consistency Points."
+* If user proceeds with the original: App logs the item and updates the Health Score accordingly.
+
+---
+
+## 4. Contextual "Dining Out" Recommendation
+**Goal:** Provide assistance based on physical environment.
+
+1. **Trigger:** App detects user location at a known restaurant via Geofencing/GPS.
+2. **Processing:**
+* System fetches the restaurant's menu data.
+* System filters menu items against User Profile (Allergies + Goals).
+3. **Notification:** User receives a push notification: *"Eating at [Restaurant Name]? Here are 3 dishes that fit your Keto goal."*
+4. **Interaction:** User taps notification to see detailed nutritional breakdown of recommended dishes.
+
+---
+
+## 5. Emotional Eating & Habit Analysis
+**Goal:** Identify non-nutritional triggers for eating.
+
+1. **Trigger:** User completes a meal log.
+2. **Input:** System displays a "How are you feeling?" prompt (Happy, Stressed, Bored, Tired).
+3. **Data Storage:** Log is timestamped and tagged with the selected mood.
+4. **Analysis (End of Week):**
+* System runs a correlation check between "Mood" and "Sugar/Calorie Intake."
+5. **Insight:** User receives a Weekly Report: *"We noticed you tend to eat 30% more sugar on days you report feeling 'Stressed'. Try a 5-minute walk next time!"*
+
+---
+
+## 6. Daily Health Score Update
+**Goal:** Provide a holistic view of the day's performance.
+
+1. **Constant:** System monitors incoming data (Food logs, Water logs, Steps from Health Kit).
+2. **Weighting:** * $Nutritional Accuracy = 60\%$
+* $Activity Level = 20\%$
+* $Hydration = 20\%$
+3. **Calculation:** $Final Score = \sum (Category Score \times Weight)$.
+4. **Visual:** The circular progress ring on the Home Screen expands and changes color (Red -> Yellow -> Green) as the score improves.
+
+---
+
+## 7. Dynamic Hydration Adjustment
+**Goal:** Adapt goals based on external environment.
+
+1. **Trigger:** Weather API reports temperature $> 30^\circ C$ **OR** Fitness API reports $> 45$ mins of vigorous activity.
+2. **Action:** System automatically increments the "Daily Water Goal" by 500ml.
+3. **Notification:** *"It's a hot one today! We've increased your hydration goal to keep you performing at your best."*

@@ -1,0 +1,159 @@
+# User Stories: Smart Food & Health App
+
+This document outlines the functional requirements and user expectations for the Food & Health App, designed to help users build healthier habits through data-driven insights.
+
+---
+
+## 1. Onboarding & Profile Setup
+
+### Health Goal Personalization
+- **As a** new user, **I want to** input my health goals, dietary preferences, and allergies during onboarding, **so that** the app filters out irrelevant content and focuses on my specific needs.
+- **Acceptance Criteria:**
+1. User can select from goals (e.g., Weight Loss, Muscle Gain, Managing Diabetes).
+2. User can select dietary tags (e.g., Keto, Vegan, Gluten-free).
+3. App must validate that at least one goal is selected before proceeding.
+- **Priority:** High
+
+### Health Data Integration
+- **As a** health-conscious user, **I want to** sync my Apple Health/Google Fit data, **so that** the app can adjust my daily calorie and macro targets based on my actual activity levels.
+- **Acceptance Criteria:**
+1. App requests permission for "Steps," "Active Energy," and "Weight."
+2. Data syncs automatically on app launch.
+3. A "Last Synced" timestamp is visible in settings.
+- **Priority:** High
+
+### Biometric Baseline
+- **As a** user, **I want to** enter my current weight, height, and age, **so that** the app can calculate my Basal Metabolic Rate (BMR) for accurate tracking.
+- **Acceptance Criteria:**
+1. Input fields support both Metric (kg/cm) and Imperial (lbs/ft) units.
+2. The app calculates and displays the Daily Caloric Intake goal immediately after input.
+- **Priority:** Medium
+
+---
+
+## 2. Food Logging
+
+### AI Visual Recognition
+- **As a** busy user, **I want to** take a photo of my meal, **so that** the app can automatically identify food items and estimate portion sizes without manual typing.
+- **Acceptance Criteria:**
+1. Camera interface identifies at least 3 distinct food items in a single frame.
+2. User can manually override or confirm the AI-suggested portion size.
+3. Processing time for image recognition must be under 3 seconds.
+- **Priority:** High
+
+### Quick-Log Favorites
+- **As a** routine-driven user, **I want to** save frequent meals as "Favorites," **so that** I can log my daily breakfast or lunch in a single tap.
+- **Acceptance Criteria:**
+1. A "Heart" icon exists next to logged meals to save them.
+2. Users can name the favorite (e.g., "Post-Gym Protein Shake").
+3. Logging a favorite updates the daily total instantly.
+- **Priority:** Medium
+
+### Barcode Scanner
+- **As a** grocery shopper, **I want to** scan product barcodes, **so that** I can instantly see the nutritional breakdown and health grade of packaged foods.
+- **Acceptance Criteria:**
+1. Scanner must access a global food database.
+2. If a product is not found, the user is prompted to take a photo of the nutrition label for OCR processing.
+- **Priority:** High
+
+---
+
+## 3. Smart Recommendations
+
+### Context-Aware Dining Suggestions
+- **As a** user eating out, **I want to** receive healthy menu recommendations based on my current location (GPS), **so that** I can stay on track with my goals even at restaurants.
+- **Acceptance Criteria:**
+1. App identifies nearby restaurants using Location Services.
+2. App highlights "Top 3 Healthy Picks" from the specific restaurant's menu.
+3. Suggestions must align with the user's saved dietary preferences.
+- **Priority:** High
+
+### "Swap-This-For-That" Nudges
+- **As a** user logging an unhealthy item, **I want** the app to suggest a healthier alternative, **so that** I can learn to make better choices in real-time.
+- **Acceptance Criteria:**
+1. Triggered when a "Red Grade" food (high sugar/sat-fat) is searched.
+2. Suggests an alternative with better macro-nutrients (e.g., "Try Greek Yogurt instead of Sour Cream").
+- **Priority:** Medium
+
+### Grocery List Generator
+- **As a** home cook, **I want** the app to generate a weekly grocery list based on my recommended meal plan, **so that** I have the right ingredients to succeed.
+- **Acceptance Criteria:**
+1. List items are automatically categorized by aisle (Produce, Dairy, etc.).
+2. Users can check off items as they shop.
+- **Priority:** Low
+
+### Smart Hydration Forecast
+- **As a** user, **I want** the app to increase my water intake goal based on high local temperature or intense workouts, **so that** I stay hydrated during peak stress.
+- **Acceptance Criteria:**
+1. Integrates with Weather API to detect heatwaves (>30°C).
+2. Detects "Workout" activity from synced fitness data.
+3. Automatically adds 500ml to the daily water goal when conditions are met.
+- **Priority:** Medium
+
+---
+
+## 4. Habit Analysis & Insights
+
+### Trigger Identification
+- **As a** user, **I want to** log my mood or "why" I am eating, **so that** the app can identify patterns of emotional eating.
+- **Acceptance Criteria:**
+1. A simple emoji-based mood selector appears during meal logging.
+2. Weekly report correlates "High Stress" with "High Sugar Intake."
+- **Priority:** Medium
+
+### Weekly Nutrition Deep-Dive
+- **As a** data-driven user, **I want** a weekly summary of my macro and micro-nutrient trends, **so that** I can see where I am consistently lacking.
+- **Acceptance Criteria:**
+1. Visual charts showing Carb/Protein/Fat distribution.
+2. A "Top Deficiencies" section highlighting missing vitamins/minerals.
+- **Priority:** High
+
+### Time-of-Day Analysis
+- **As a** user, **I want to** see at what time of day I consume the most calories, **so that** I can adjust my eating window to prevent late-night snacking.
+- **Acceptance Criteria:**
+1. A heat map or timeline view showing calorie distribution over 24 hours.
+2. Comparative insight provided: "You consume 40% of your calories after 8 PM."
+- **Priority:** Low
+
+---
+
+## 5. Progress & Health Score
+
+### Holistic Health Score
+- **As a** user, **I want** a daily "Health Score" (0–100), **so that** I have a single metric to understand my overall performance across diet, hydration, and activity.
+- **Acceptance Criteria:**
+1. Algorithm weighs Calories (30%), Macro Balance (30%), Hydration (20%), and Steps (20%).
+2. Score updates in real-time as data is logged.
+- **Priority:** High
+
+### Visual Weight Trend
+- **As a** user tracking weight loss, **I want to** see a trend line of my weight over time against my target, **so that** I don't get discouraged by daily fluctuations.
+- **Acceptance Criteria:**
+1. A line graph showing "Moving Average" to smooth out spikes.
+2. Percentage of goal completion is displayed (e.g., "60% of the way to your goal").
+- **Priority:** Medium
+
+### Streak & Milestone Badges
+- **As a** user, **I want to** earn badges for consistency, **so that** I stay motivated through gamification.
+- **Acceptance Criteria:**
+1. Notification triggers when a streak milestone (e.g., 7 days) is hit.
+2. A "Trophy Cabinet" section is accessible in the profile.
+- **Priority:** Low
+
+---
+
+## 6. Notifications & Reminders
+
+### Contextual Meal Reminders
+- **As a** forgetful user, **I want to** receive a notification if I haven't logged a meal 1 hour after my usual eating time, **so that** my data remains accurate.
+- **Acceptance Criteria:**
+1. App learns usual eating times based on historical data.
+2. Push notification is triggered if no log is detected within the 1-hour buffer.
+- **Priority:** Medium
+
+### The "Grocery Store" Nudge
+- **As a** shopper, **I want** a reminder to check my 'Healthiest Alternatives' list when the app detects I am at a grocery store, **so that** I avoid impulsive junk food purchases.
+- **Acceptance Criteria:**
+1. Geofencing triggers a notification when entering a supermarket.
+2. Notification links directly to the user's shopping list.
+- **Priority:** Low
